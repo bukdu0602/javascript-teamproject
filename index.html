@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        onload = function () {
+            var textToPage = document.createElement("a")
+            textToPage.id = 'textPage'
+            document.body.appendChild(textToPage)
+            $("#texttyped").on('keyup', function (e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    gotClicked()
+                }
+            });
+        }
+
+        function gotClicked() {
+            let userText = document.getElementById("texttyped").value
+            if (userText == "storage") {
+                document.getElementById("textPage").href = "storage.html"
+                document.getElementById("textPage").click();
+            } else if (userText =="plugin"){
+                document.getElementById("textPage").href = "plugin.html"
+                document.getElementById("textPage").click();
+            } else if (userText == "alien") {
+                $(".remove").remove()
+                alienReset()
+                alien("create")
+            } else if (userText == "walk") {
+                alien("walk")
+            } else if (userText == "run") {
+                alien("run")
+            } else if (userText == "stop") {
+                alien("stop")
+            } else if (userText == "bye") {
+                alien("bye")
+            } else if (userText == "jquery") {
+                $(".remove").remove()
+                jquery()
+            } else if (userText == "alphabet") {
+                $(".remove").remove()
+                alphabet()
+            } else if (userText == "ajax") {
+                $(".remove").remove()
+                ajax()
+            }else{
+                alert("invalid keyword")
+            }
+            document.getElementById("texttyped").value = ""
+        }
+
+        let alienCreated = false
+        let imgCount = 0
+        let timer = null
+        let direction = "right"
+        let aliendirection = "r"
+        let pixel = 1
+        let alienspeed = 100
+
+        function alienReset() {
+            alienCreated = false
+            direction = "right"
+            aliendirection = "r"
+            imgCount = 0
+            pixel = 1
+            alienspeed = 100
+            clearInterval(timer)
+        }
+
+        function alien(movement) {
+            if (movement == "create" && alienCreated == false) {
+                alienCreated = true
+                const alien = document.createElement("img")
+                document.body.appendChild(alien)
+                alien.style.position = "absolute"
+                alien.id = "alien"
+                alien.src = "images/alien/alienrwalk" + imgCount + ".gif"
+                alien.style.left = "14px"
+                alien.className = "remove"
+                console.log(document.getElementById("alien").style.height)
+            } else if (movement == "walk") {
+                alienspeed = 100
+                alienMove()
+            } else if (movement == "run") {
+                alienspeed = 10
+                alienMove()
+            } else if (movement == "stop") {
+                clearInterval(timer)
+            } else if (movement == "bye") {
+                clearInterval(timer)
+                document.getElementById("alien").style.display = "none"
+            }
+
+            function alienMove() {
+                clearInterval(timer)
+                timer = setInterval(() => {
+                    document.getElementById("alien").src = "images/alien/alien" + aliendirection + "walk" +
+                        imgCount + ".gif"
+                    document.getElementById("alien").style.left = parseInt(document.getElementById("alien")
+                        .style.left) + pixel + "px"
+                    imgCount += 1
+                    if (parseInt(document.getElementById("alien").style.left) + 100 > window.innerWidth) {
+                        aliendirection = "l"
+                        pixel = -1
+                    }
+                    if (parseInt(document.getElementById("alien").style.left) < 14) {
+                        aliendirection = "r"
+                        pixel = 1
+                    }
+                    if (imgCount % 30 == 0) {
+                        imgCount = 0
+                    }
+                }, alienspeed);
+            }
+
+        } // end of alien
+
+        function jquery() {
+            for (i = 0; i < 4; i++) {
+                const fourImg = document.createElement("img")
+                document.body.appendChild(fourImg)
+                fourImg.src = "images/jquery/" + i + ".jpg"
+                fourImg.className = "jqImage remove"
+                if (i == 1) {
+                    fourImg.id = "secondImg"
+                }
+            }
+            $('.jqImage').width(200);
+            $("#secondImg").on("click", function () {
+                $("#secondImg").css('border', '10px solid red');
+            });
+        } // end of jquery
+
+        function alphabet() {
+            for (i = "z".charCodeAt(0); i >= "a".charCodeAt(0); i--) {
+                letter = String.fromCharCode(i)
+                const alphabetImg = document.createElement("img")
+                document.body.appendChild(alphabetImg)
+                alphabetImg.src = "/images/letters/" + letter + ".png"
+                alphabetImg.style.width = "40px"
+                alphabetImg.id = letter
+                alphabetImg.className = "remove"
+            }
+            $("img").on("click", function () {
+                $("img").attr("src", "/images/letters/" + this.id + ".png");
+            });
+        } //end of alphabet
+
+        function ajax() {
+            let request = new XMLHttpRequest()
+            request.open("GET", "advice.txt", true)
+            request.onreadystatechange = function () {
+                if (request.readyState == 4) {
+                    let adviceinJason = JSON.parse(request.responseText);
+                    const hOne = document.createElement("h1")
+                    hOne.className = "remove"
+                    document.body.appendChild(hOne)
+                    for (i = 0; i < adviceinJason.length; i++) {
+                        adviceinJason[i] =  adviceinJason[i].toUpperCase()
+                    }
+                    stringfiedAdvice = JSON.stringify(adviceinJason)
+                    const word = document.createTextNode(stringfiedAdvice)
+                    hOne.appendChild(word)
+                }
+            }
+            request.send(null)
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Type here</h1>
+
+
+        <input id="texttyped" value="" type="text">
+        <button type="button" id="click" onclick="gotClicked()">Click here</button>
+
+    </div>
+</body>
+
+</html>

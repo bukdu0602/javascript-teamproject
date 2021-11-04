@@ -1,0 +1,49 @@
+<!-- plugin source: https://github.com/peachananr/planetarium -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery.planetarium.js"></script>
+    <link rel="stylesheet" href="planetarium.css">
+    <script>
+        onload = function () {
+            $(".planet").planetarium({
+                autospin: "1000ms",
+                angle: "20deg",
+                glow: "rgba(255, 255, 255, 0.34902) 0px 0px 50px, inset 33px 20px 50px rgba(0,0,0,0.5)",
+                pattern: "images/plugin/texture-earth.jpg",
+                //pattern: "images/plugin/texture-jupiter.jpg",
+                // pattern: "images/plugin/texture-saturn.jpg",
+                size: "100x100",
+                float: true,
+                space: "body",
+                ring: false,
+                ringColor: "#fff",
+                ringAngle: "20deg"
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="earth planet"></div>
+    <div class="earth planet" data-ptr-autospin="4000ms"></div>
+    <div class="earth planet" data-ptr-angle="60deg"></div>
+    <div class="earth planet" data-ptr-glow="0 0 50px #fff"></div>
+    <div class="earth planet" data-ptr-size="500x500"></div>
+    <div class="earth planet" data-ptr-float="false"></div>
+    <div class="earth planet" data-ptr-ring="true"></div>
+    <div class="earth planet" data-ptr-ringcolor="#fff"></div>
+    <div class="earth planet" data-ptr-ringangle="30deg"></div>
+
+</body>
+
+</html>

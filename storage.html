@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script>
+    onload = function(){
+        i = 1
+        let time = setInterval(() => {
+        const imagecreator = document.createElement("img")
+        document.body.appendChild(imagecreator)
+        imagecreator.src = 'images/localstorage/localstorage'+ i+".png"
+        imagecreator.style.display = 'block'
+        imagecreator.style.paddingBottom = "10px"
+        i++
+        if(i == 6){
+            clearInterval(time)
+        }
+        }, 1000);
+        
+        
+    }
+</script>
+
+</head>
+<body>
+    
+    <h1>What is local Storage???</h1>
+    <h2>It is storing your data in the browser</h2>
+
+    <p>LocalStorage is an HTML5 web storage object for storing data on the client – that is, locally, on a user's computer. Data stored locally has no expiration date and will exist until it's been deleted. (In contrast, session storage, which is another HTML5 web storage API, deletes data stored when the browser closes.</p>
+    <p>The data stores in the session.</p>
+    <h2>Demonstration</h2>
+    <p></p>
+</body>
+</html>
