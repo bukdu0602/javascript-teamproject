@@ -164,8 +164,8 @@
                     for (i = 0; i < adviceinJason.length; i++) {
                         adviceinJason[i] =  adviceinJason[i].toUpperCase()
                     }
-                    stringfiedAdvice = JSON.stringify(adviceinJason)
-                    const word = document.createTextNode(stringfiedAdvice)
+                    const withSpace = adviceinJason.join(" ")
+                    const word = document.createTextNode(withSpace)
                     hOne.appendChild(word)
                 }
             }
