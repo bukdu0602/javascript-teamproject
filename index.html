@@ -1,3 +1,6 @@
+<!-- Ryan and Simon's Team Project -->
+<!-- Ryan: index, alien, ajax, alphabet   Simon: storage, plugin, jquery -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +13,6 @@
 
     <script>
         onload = function () {
-            var textToPage = document.createElement("a")
-            textToPage.id = 'textPage'
-            document.body.appendChild(textToPage)
             $("#texttyped").on('keyup', function (e) {
                 if (e.key === 'Enter' || e.keyCode === 13) {
                     gotClicked()
@@ -23,11 +23,21 @@
         function gotClicked() {
             let userText = document.getElementById("texttyped").value
             if (userText == "storage") {
-                document.getElementById("textPage").href = "storage.html"
-                document.getElementById("textPage").click();
+                $(".remove").remove()
+                var textToPage = document.createElement("a")
+                var text = document.createTextNode("Click me")
+                document.body.appendChild(textToPage)
+                textToPage.href = "storage.html"
+                textToPage.appendChild(text)
+                textToPage.className = "remove"
             } else if (userText =="plugin"){
-                document.getElementById("textPage").href = "plugin.html"
-                document.getElementById("textPage").click();
+                $(".remove").remove()
+                var textToPage = document.createElement("a")
+                var text = document.createTextNode("Click me")
+                document.body.appendChild(textToPage)
+                textToPage.href = "plugin.html"
+                textToPage.appendChild(text)
+                textToPage.className = "remove"
             } else if (userText == "alien") {
                 $(".remove").remove()
                 alienReset()
@@ -180,8 +190,21 @@
 
         <input id="texttyped" value="" type="text">
         <button type="button" id="click" onclick="gotClicked()">Click here</button>
-
+        <h2> Welcome to Ryan and Simon's Homepage </h2>
+        <p> In this page, you can find interesting things using keywords below by just Type & Click</p>
+        <h2> Options </h2>
+        <ul>
+            <li> Do you want to know about "window.localStorage"? Just type "storage".</li>
+            <li> Wanna move an alien? Type "alien" and order them with "walk", "run", "stop" and "bye".</li>
+            <li> We share the same background. You can get some hints by writing "jquery".</li>
+            <li> Write "plugin" and see what happens next.</li>
+            <li> When type "ajax", you can find easy life wisdom to benefit your health.</li>
+            <li> If you'd like to play with "alphabet", TYPE IT.</li>
+        </ul>
     </div>
 </body>
+<footer>
+    <p> &copy; 2021 Ryan Lim & Simon Lee </p>
+</footer>
 
 </html>
